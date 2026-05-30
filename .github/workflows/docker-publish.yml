@@ -19,8 +19,10 @@ jobs:
         include:
           - image_tag: latest
             vllm_image: vllm/vllm-openai:v0.21.0
+            release_suffix: ""
           - image_tag: cuda
             vllm_image: vllm/vllm-openai:v0.21.0-cu129
+            release_suffix: -cuda
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -43,8 +45,7 @@ jobs:
           images: ghcr.io/${{ github.repository }}
           tags: |
             type=raw,value=${{ matrix.image_tag }},enable={{is_default_branch}}
-            type=ref,event=tag,enable=${{ matrix.image_tag == 'latest' }}
-            type=ref,event=tag,suffix=-cuda,enable=${{ matrix.image_tag == 'cuda' }}
+            type=ref,event=tag,suffix=${{ matrix.release_suffix }}
 
       - name: Build and push
         uses: docker/build-push-action@v6
