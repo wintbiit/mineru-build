@@ -43,7 +43,8 @@ jobs:
           images: ghcr.io/${{ github.repository }}
           tags: |
             type=raw,value=${{ matrix.image_tag }},enable={{is_default_branch}}
-            type=ref,event=tag,suffix=-${{ matrix.image_tag }}
+            type=ref,event=tag,enable=${{ matrix.image_tag == 'latest' }}
+            type=ref,event=tag,suffix=-cuda,enable=${{ matrix.image_tag == 'cuda' }}
 
       - name: Build and push
         uses: docker/build-push-action@v6
