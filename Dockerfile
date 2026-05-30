@@ -1,7 +1,7 @@
-# Use the official vllm image for gpu with Volta、Turing、Ampere、Ada Lovelace、Hopper、Blackwell architecture (7.0 <= Compute Capability <= 12.1)
-# The default base image uses vLLM 0.21.0. For CUDA 12.9 environments, override VLLM_IMAGE with vllm/vllm-openai:v0.21.0-cu129.
+# Use the official vllm image for gpu with Volta, Turing, Ampere, Ada Lovelace, Hopper, Blackwell architecture (7.0 <= Compute Capability <= 12.1)
+# The default base image uses vLLM 0.21.0. For CUDA 12.9 environments, build with --build-arg VLLM_IMAGE=vllm/vllm-openai:v0.21.0-cu129.
 # Compute Capability version query (https://developer.nvidia.com/cuda-gpus)
-# support x86_64 architecture
+# Support x86_64 architecture
 ARG VLLM_IMAGE=vllm/vllm-openai:v0.21.0
 FROM ${VLLM_IMAGE}
 
